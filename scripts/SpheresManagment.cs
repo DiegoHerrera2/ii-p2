@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpheresManagment : MonoBehaviour
 {
     private GameObject[] gameObjects;
+    private Renderer furthestBallRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class SpheresManagment : MonoBehaviour
             if (distances[i] < distances[nearestIndex]) nearestIndex = i;
         }
 
-        gameObjects[furthestIndex].GetComponent<Renderer>().material.color = Color.green;
+        furthestBallRenderer = gameObjects[furthestIndex].GetComponent<Renderer>();
         gameObjects[nearestIndex].transform.position += Vector3.up * 1;
 
     }
@@ -32,6 +33,6 @@ public class SpheresManagment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("Space")) furthestBallRenderer.material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
     }
 }
